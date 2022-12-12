@@ -2,6 +2,10 @@
   import { Container, ProjectCard } from '$lib/components';
 
   export let repos: Repo[];
+
+  let showAll = false;
+
+  $: data = repos.slice(0, showAll ? repos.length : 9);
 </script>
 
 <section id="project" class="text-dark-600 dark:text-light-600">
@@ -18,9 +22,19 @@
   <!-- Content -->
   <Container class="md:px-8 py-12 lg:max-w-screen-lg" viewport="md">
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {#each repos as repo}
+      {#each data as repo}
         <ProjectCard {...repo} />
       {/each}
     </div>
   </Container>
+
+  {#if repos.length > 9}
+    <Container
+      class="mb-12 text-center font-mono text-gray-400 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100"
+    >
+      <button on:click={() => (showAll = !showAll)}>
+        {showAll ? 'Show less' : 'Show more'}
+      </button>
+    </Container>
+  {/if}
 </section>

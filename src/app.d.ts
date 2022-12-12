@@ -11,6 +11,12 @@ declare namespace App {
   }
 }
 
+declare namespace globalThis {
+  interface Window {
+    umami?: (event: string) => void;
+  }
+}
+
 type Experience = {
   date: string;
   type: 'education' | 'job';
