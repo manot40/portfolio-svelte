@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { marked } from 'marked';
   import { Container, Progress, SociaLinks, IntersectObserver } from '$lib/components';
   import { userInfo as store } from '$lib/stores/userInfo';
 </script>
@@ -23,7 +24,7 @@
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 mb-2 font-medium">- {$store.quote.author}</p>
         <p class="mb-8 font-light">The quote above is my favorite, it give me composure.</p>
         <div class="mb-8">
-          {@html $store.about}
+          {@html marked($store.about)}
         </div>
         <p class="mb-5 font-sans">My technical specialty including but not limited to</p>
         <IntersectObserver let:intersecting once class="space-y-4 mb-8">

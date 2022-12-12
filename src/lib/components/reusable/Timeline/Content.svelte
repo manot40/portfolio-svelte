@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { marked } from 'marked';
+
   export let type: string;
   export let date: string;
   export let title: string;
@@ -19,7 +21,7 @@
   <time class="block mb-2 text-sm font-normal leading-none text-neutral-400">
     {date}
   </time>
-  <p class="text-base font-normal text-gray-600 dark:text-gray-300">
-    {description}
-  </p>
+  <div class="text-base font-normal text-gray-600 dark:text-gray-300">
+    {@html marked(description)}
+  </div>
 </li>

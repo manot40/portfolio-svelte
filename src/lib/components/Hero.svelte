@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { marked } from 'marked';
   import { Container } from '$lib/components';
   import { userInfo as store } from '$lib/stores/userInfo';
 </script>
@@ -17,9 +18,9 @@
           {$store.fullname}
         </h1>
         <h2 class="mt-1 text-sm text-neutral-500 dark:text-neutral-500">({$store.nickname} for short)</h2>
-        <p class="text-xl font-bold tracking-normal mt-8 md:text-2xl text-black-500 dark:text-light-500">
-          {$store.greeting}
-        </p>
+        <div class="text-xl font-bold tracking-normal mt-8 md:text-2xl text-black-500 dark:text-light-500">
+          {@html marked($store.greeting)}
+        </div>
       </div>
     </div>
   </Container>

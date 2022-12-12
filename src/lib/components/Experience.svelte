@@ -1,6 +1,12 @@
 <script lang="ts">
   import { Container, Timeline } from '$lib/components';
   import { userInfo as store } from '$lib/stores/userInfo';
+
+  const experiences = $store.experiences.sort((a, b) => {
+    const aDate = new Date(a.date);
+    const bDate = new Date(b.date);
+    return bDate.getTime() - aDate.getTime();
+  });
 </script>
 
 <section id="experience" class="text-dark-600 dark:text-light-600">
@@ -18,7 +24,7 @@
       <div class="p-12 bg-light-400 dark:bg-dark-400 shadow-sm rounded-xl">
         <h2 class="text-2xl font-bold mb-10 underline underline-offset-8">Careers</h2>
         <Timeline.Wrapper>
-          {#each $store.experiences.filter(({ type }) => type === 'job') as exp}
+          {#each experiences.filter(({ type }) => type === 'job') as exp}
             <Timeline.Content {...exp} />
           {/each}
         </Timeline.Wrapper>
@@ -26,7 +32,7 @@
       <div class="p-12 bg-light-400 dark:bg-dark-400 shadow-sm rounded-xl">
         <h2 class="text-2xl font-bold mb-10 underline underline-offset-8">Education</h2>
         <Timeline.Wrapper>
-          {#each $store.experiences.filter(({ type }) => type === 'education') as exp}
+          {#each experiences.filter(({ type }) => type === 'education') as exp}
             <Timeline.Content {...exp} />
           {/each}
         </Timeline.Wrapper>

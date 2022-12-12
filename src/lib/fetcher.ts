@@ -2,9 +2,10 @@ import Axios, { type AxiosResponse } from 'axios';
 
 const axios = Axios.create({
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    'Accept-Encoding': null
+    Accept: '*/*',
+    'Accept-Encoding': null,
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
   }
 });
 

@@ -1,6 +1,7 @@
 import type { AxiosError } from 'axios';
 import type { PageServerLoad } from './$types';
 
+import YAML from 'yaml';
 import fetcher from '$lib/fetcher';
 import { error } from '@sveltejs/kit';
 import { API_URL } from '$env/static/private';
@@ -8,7 +9,8 @@ import { PUBLIC_GITHUB_USERNAME as github } from '$env/static/public';
 
 export const load = (async () => {
   try {
-    const userInfo = await fetcher.get<UserInfo>(API_URL);
+    const userInfoRes = await fetcher.get<string>(API_URL);
+    const userInfo = YAML.parse(userInfoRes) as UserInfo;
 
     const reposRes = await fetcher.get<Record<string, string>[]>(`https://api.github.com/users/${github}/repos`);
     const repos = reposRes
