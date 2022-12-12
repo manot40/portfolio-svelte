@@ -3,7 +3,7 @@
   // Store
   import { userInfo as store } from '$lib/stores/userInfo';
   // Components
-  import { Header, Hero, About } from '$lib/components';
+  import { Header, Hero, About, Experience, Project, Footer } from '$lib/components';
 
   export let data: PageData;
   store.set(data.userInfo);
@@ -16,3 +16,6 @@
 <Header />
 <Hero />
 <About />
+<Experience />
+<Project repos={data.repos} />
+<Footer />

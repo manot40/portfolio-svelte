@@ -1,7 +1,7 @@
 {
   "name": "portfolio-svelte",
   "version": "0.0.1",
-  "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -13,8 +13,7 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/adapter-cloudflare": "next",
+    "@sveltejs/adapter-node": "^1.0.0-next.104",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",

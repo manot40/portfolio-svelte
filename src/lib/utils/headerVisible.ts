@@ -1,5 +1,4 @@
-import { browser } from '$app/environment';
-import { onMount, onDestroy } from 'svelte';
+import { onMount } from 'svelte';
 
 type Mutator = (visible: boolean, lastScrollPos: number) => void;
 
@@ -15,9 +14,6 @@ export function headerVisible(mutator: Mutator, offset = 300) {
 
   onMount(() => {
     window.addEventListener('scroll', handleScroll);
-  });
-
-  onDestroy(() => {
-    if (browser) window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   });
 }

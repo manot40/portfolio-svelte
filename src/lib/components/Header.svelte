@@ -4,23 +4,20 @@
   import { toggle, theme } from '$lib/stores/theme';
   import { IonIcon, Container } from '$lib/components';
 
-  let visible = true,
+  let menu = false,
+    visible = true,
     scrollPos = browser ? window.scrollY : 0;
+
   headerVisible((v, s) => {
     visible = v;
     scrollPos = s;
-  });
+  }, 500);
 
-  let menu = false;
+  $: themeIcon = { dark: 'moon', light: 'sunny', system: 'contrast' }[$theme.scheme];
 
   $: headerClass = `${visible ? 'top-0' : '-top-24'} ${scrollPos < 100 ? 'backdrop-blur-none' : 'backdrop-blur-lg'}`;
   $: wrapperClass = scrollPos < 100 ? 'bg-transparent ' : 'bg-light-500 dark:bg-dark-500';
   $: mobileNavClass = menu ? 'translate-x-0 w-full' : 'translate-x-full w-0';
-  $: themeIcon = (() => {
-    if ($theme.scheme === 'dark') return 'moon';
-    if ($theme.scheme === 'light') return 'sunny';
-    return 'contrast';
-  })();
 </script>
 
 <header class="fixed z-20 w-full transition-top duration-300 {headerClass}">
@@ -37,13 +34,12 @@
     <div class="flex items-center">
       <!-- Desktop Navigation -->
       <div class="font-medium font-head sm:block md:flex lg:flex space-x-8 hidden">
-        <a href="#about" class="transition-colors hover:text-blue-500 umami--click--aboutMenu">About</a>
-        <a href="#experience" class="transition-colors hover:text-blue-500 umami--click--experienceMenu">Experience</a>
-        <a href="#project" class="transition-colors hover:text-blue-500 umami--click--projectMenu">Project</a>
+        <a href="#about" class="transition-colors hover:text-blue-500">About</a>
+        <a href="#experience" class="transition-colors hover:text-blue-500">Experience</a>
+        <a href="#project" class="transition-colors hover:text-blue-500">Project</a>
       </div>
-
       <!-- Theme Toggler -->
-      <button type="button" on:click={toggle} class="w-8 h-8 p-1 ml-1 mr-1 rounded sm:ml-4 umami--change--siteTheme">
+      <button type="button" on:click={toggle} class="w-8 h-8 p-1 ml-1 mr-1 rounded sm:ml-4">
         <IonIcon size={24} class="text-black-500 dark:text-light-500" name={themeIcon} />
       </button>
 
@@ -61,15 +57,13 @@
             class="flex flex-col space-y-4 items-center font-head text-xl font-semibold h-full mt-8"
           >
             <div class="px-12 py-4">
-              <a href="#about" class="transition-colors hover:text-blue-500 umami--click--aboutMenu">About</a>
+              <a href="#about" class="transition-colors hover:text-blue-500">About</a>
             </div>
             <div class="px-12 py-4">
-              <a href="#experience" class="transition-colors hover:text-blue-500 umami--click--experienceMenu"
-                >Experience</a
-              >
+              <a href="#experience" class="transition-colors hover:text-blue-500">Experience</a>
             </div>
             <div class="px-12 py-4">
-              <a href="#project" class="transition-colors hover:text-blue-500 umami--click--projectMenu">Project</a>
+              <a href="#project" class="transition-colors hover:text-blue-500">Project</a>
             </div>
           </nav>
         </div>

@@ -23,6 +23,13 @@ type Skill = {
   value: number | string;
 };
 
+type Repo = {
+  name: string;
+  url: string;
+  language: string;
+  description: string;
+};
+
 type UserInfo = {
   avatarUrl: string;
   fullname: string;
