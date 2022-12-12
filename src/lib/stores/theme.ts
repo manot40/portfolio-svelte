@@ -3,7 +3,7 @@ import { writable, derived } from 'svelte/store';
 import { cookies } from '$lib/utils';
 import { browser } from '$app/environment';
 
-type Theme = {
+export type Theme = {
   system?: 'dark' | 'light';
   scheme: 'dark' | 'light' | 'system';
 };

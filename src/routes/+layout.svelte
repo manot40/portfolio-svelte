@@ -2,10 +2,10 @@
   import '../styles/main.css';
   import { onMount } from 'svelte';
   import { cookies } from '$lib/utils';
-  import { theme } from '$lib/stores/theme';
+  import { theme, type Theme } from '$lib/stores/theme';
 
   onMount(() => {
-    const cTheme = cookies.get('theme') as any;
+    const cTheme = cookies.get('theme') as Theme['scheme'];
     const system = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     if (!cTheme) cookies.set('theme', system, 365);
     theme.update(({ scheme }) => ({ system, scheme: cTheme || scheme }));

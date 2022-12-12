@@ -6,7 +6,7 @@
 
   export let url: string;
   export let name: string;
-  export let image: string = '';
+  export let image = '';
   export let language: string;
   export let description: string;
 </script>
