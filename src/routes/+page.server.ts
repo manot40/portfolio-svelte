@@ -25,6 +25,7 @@ export const load = (async () => {
     return { userInfo, repos };
   } catch (e: unknown) {
     const err = e as AxiosError;
+    console.error(err.message);
     throw error(err.response?.status || 500, {
       message: err.code || 'Internal Server Error'
     });
