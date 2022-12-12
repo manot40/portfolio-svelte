@@ -6,7 +6,7 @@
 
   onMount(() => {
     const cTheme = cookies.get('theme') as any;
-    const system = window.matchMedia?.('(prefers-color-scheme: dark)') ? 'dark' : 'light';
+    const system = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     if (!cTheme) cookies.set('theme', system, 365);
     theme.update(({ scheme }) => ({ system, scheme: cTheme || scheme }));
   });
