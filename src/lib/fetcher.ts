@@ -1,4 +1,7 @@
-import Axios, { type AxiosResponse } from 'axios';
+import Axios, { type AxiosResponse, type AxiosRequestConfig } from 'axios';
+
+import { GITHUB_TOKEN as password } from '$env/static/private';
+import { PUBLIC_GITHUB_USERNAME as username } from '$env/static/public';
 
 const axios = Axios.create({
   headers: {
@@ -6,24 +9,25 @@ const axios = Axios.create({
     'Accept-Encoding': null,
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json'
-  }
+  },
+  auth: password ? { username, password } : undefined
 });
 
 const fetcher = {
-  get: <R = unknown>(url: string): Promise<R> => {
-    return axios.get(url).then(handleResponse);
+  get: <R = unknown>(url: string, opts?: AxiosRequestConfig): Promise<R> => {
+    return axios.get(url, opts).then(handleResponse);
   },
-  delete: <R = unknown>(url: string): Promise<R> => {
-    return axios.delete(url).then(handleResponse);
+  delete: <R = unknown>(url: string, opts?: AxiosRequestConfig): Promise<R> => {
+    return axios.delete(url, opts).then(handleResponse);
   },
-  post: <R = unknown, T = unknown>(url: string, data: T): Promise<R> => {
-    return axios.post(url, data).then(handleResponse);
+  post: <R = unknown, T = unknown>(url: string, data: T, opts?: AxiosRequestConfig): Promise<R> => {
+    return axios.post(url, data, opts).then(handleResponse);
   },
-  put: <R = unknown, T = unknown>(url: string, data: T): Promise<R> => {
-    return axios.put(url, data).then(handleResponse);
+  put: <R = unknown, T = unknown>(url: string, data: T, opts?: AxiosRequestConfig): Promise<R> => {
+    return axios.put(url, data, opts).then(handleResponse);
   },
-  patch: <R = unknown, T = unknown>(url: string, data: T): Promise<R> => {
-    return axios.patch(url, data).then(handleResponse);
+  patch: <R = unknown, T = unknown>(url: string, data: T, opts?: AxiosRequestConfig): Promise<R> => {
+    return axios.patch(url, data, opts).then(handleResponse);
   },
   setHeader(key: string, value: string) {
     axios.defaults.headers.common[key] = value;

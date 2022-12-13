@@ -20,7 +20,7 @@ export const toggle = () =>
         cookies.set('theme', 'dark', 365);
         return { system, scheme: 'dark' };
       case 'dark':
-        cookies.set('theme', 'system', 365);
+        cookies.set('theme', system, 365);
         return { system, scheme: 'system' };
       default:
         cookies.set('theme', 'light', 365);
