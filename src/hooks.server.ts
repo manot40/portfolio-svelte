@@ -4,12 +4,11 @@ export const handle: Handle = (async ({ event, resolve }) => {
   const response = await resolve(event, {
     transformPageChunk: ({ html }) => {
       const isDark = event.cookies.get('theme') === 'dark';
-      return isDark ? html.replace('class="light"', 'class="dark"') : html;
+      return html.replace('%theme%', isDark ? 'dark' : 'light');
     }
   });
 
-  // Cache Control
-  response.headers.set('cache-control', 'max-age=0, s-maxage=86400, stale-while-revalidate');
+  response.headers.set('cache-control', 'max-age=0, s-maxage=86400');
 
   return response;
 }) satisfies Handle;
