@@ -15,17 +15,9 @@ export const theme = writable<Theme>({
 
 export const toggle = () =>
   theme.update(({ system, scheme }) => {
-    switch (scheme) {
-      case 'light':
-        cookies.set('theme', 'dark', 365);
-        return { system, scheme: 'dark' };
-      case 'dark':
-        cookies.set('theme', system, 365);
-        return { system, scheme: 'system' };
-      default:
-        cookies.set('theme', 'light', 365);
-        return { system, scheme: 'light' };
-    }
+    if (scheme === 'light') return { system, scheme: 'dark' };
+    if (scheme === 'dark') return { system, scheme: 'system' };
+    return { system, scheme: 'light' };
   });
 
 theme.subscribe((value) => {
@@ -33,6 +25,8 @@ theme.subscribe((value) => {
   if (browser && chosen) {
     document.querySelector('html')?.classList.remove('dark', 'light');
     document.querySelector('html')?.classList.toggle(chosen);
+    localStorage.setItem('theme', value.scheme);
+    cookies.set('theme', chosen, 365);
   }
 });
 

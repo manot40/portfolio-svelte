@@ -1,16 +1,15 @@
 <script lang="ts">
   import '../styles/main.css';
   import { onMount } from 'svelte';
-  import { cookies } from '$lib/utils';
   import { theme, type Theme } from '$lib/stores/theme';
 
   import { PUBLIC_UMAMI_ID as umamiId, PUBLIC_UMAMI_URL as umamiUrl } from '$env/static/public';
 
   onMount(() => {
-    const cTheme = cookies.get('theme') as Theme['scheme'];
+    const local = localStorage.getItem('theme') as Theme['scheme'];
     const system = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    if (!cTheme) cookies.set('theme', system, 365);
-    theme.update(({ scheme }) => ({ system, scheme: cTheme || scheme }));
+    if (!local) localStorage.setItem('theme', system);
+    theme.update(({ scheme }) => ({ system, scheme: local || scheme }));
   });
 </script>
 
