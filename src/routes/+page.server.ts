@@ -14,7 +14,7 @@ const cache = {
   isStale() {
     return (
       (!Object.keys(this.userInfo).length && !this.repos.length) ||
-      Date.now() - this.timestamp > 1000 * 60 * (NODE_ENV === 'production' ? 60 : 1)
+      Date.now() - this.timestamp > (NODE_ENV === 'production' ? 1000 * 60 * 15 : 0)
     );
   }
 };
