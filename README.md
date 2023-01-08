@@ -1,6 +1,7 @@
 # Svelte Portfolio
 
 My personal site for portfolio. Made with ❤️ using SvelteKit 1.x
+![showcase-light.png](https://i.ibb.co/Dz0KP22/Cuplikan-layar-20230108-161741.png)
 
 ## Setup ⚙️
 
