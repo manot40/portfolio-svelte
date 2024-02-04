@@ -13,7 +13,7 @@
 
 <div class="shadow-md rounded-lg dark:border border-neutral-800">
   <div class="relative">
-    <a href={url} target="_BLANK" rel="noreferrer noopener" on:click={() => window.umami?.(`Project ${name} click`)}>
+    <a href={url} target="_BLANK" rel="noreferrer noopener" on:click={() => window.umami?.track('Project click', { name })}>
       <div class="absolute top-0 h-full w-full" />
       <img class="rounded-t-lg" src={image || `${openGraph}/${github}/${name}`} alt={name} />
     </a>
@@ -27,7 +27,7 @@
         target="_BLANK"
         rel="noreferrer noopener"
         class="font-bold hover:underline whitespace-nowrap text-ellipsis overflow-hidden"
-        on:click={() => window.umami?.(`Project ${name} click`)}
+        on:click={() => window.umami?.track('Project click', { name })}
         >{name}
       </a>
       <span class="cursor-default">{language}</span>

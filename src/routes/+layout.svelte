@@ -23,7 +23,7 @@
   <script type="module" src="https://unpkg.com/ionicons@6.0.4/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@6.0.4/dist/ionicons/ionicons.js"></script>
   {#if umamiId && umamiUrl}
-    <script async defer data-website-id={umamiId} src={umamiUrl}></script>
+    <script async data-website-id={umamiId} src={umamiUrl}></script>
   {/if}
 </svelte:head>
 

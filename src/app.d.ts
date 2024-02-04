@@ -13,13 +13,15 @@ declare namespace App {
 
 declare namespace globalThis {
   interface Window {
-    umami?: (event: string) => void;
+    umami?: {
+      track: (event: string, ...data?: Record<string, any>) => void;
+    };
   }
 }
 
 type Experience = {
   date: string;
-  type: 'education' | 'job';
+  type: "education" | "job";
   title: string;
   description: string;
 };
